@@ -33,7 +33,7 @@
                     <a href="{% url 'posts:post_details' post.id %}" class="news__item-details">Подробнее</a>
                     <div class="news__item-header">
                         <span class="news__item-category">{{ post.category.name }}</span>
-                        <p class="news__item-title">{{ post.title|truncatewords:15 }}</p>
+                        <p class="news__item-title">{{ post.title|truncatechars:80 }}</p>
                     </div>
                 </div>
             {% endfor %}
