@@ -63,8 +63,8 @@ class RegisterForm(forms.ModelForm):
         }
 
     def clean_password(self):
-        password = self.cleaned_data['password']
-        confirm_password = self.cleaned_data['confirm_password']
+        password = self.cleaned_data.get('password')
+        confirm_password = self.data.get('confirm_password')
 
         if confirm_password != password:
             raise ValueError('Пароли не совпадают')
