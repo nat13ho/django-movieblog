@@ -44,11 +44,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/registration" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/templates/registration" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/templates/movieblog" />
@@ -103,7 +104,7 @@
       <workItem from="1616343100939" duration="7211000" />
       <workItem from="1616420299686" duration="128000" />
       <workItem from="1616437497047" duration="655000" />
-      <workItem from="1616438226697" duration="2739000" />
+      <workItem from="1616438226697" duration="3349000" />
     </task>
     <servers />
   </component>
