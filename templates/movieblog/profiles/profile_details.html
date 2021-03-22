@@ -1,0 +1,30 @@
+{% extends 'movieblog/base_profile.html' %}
+{% load static %}
+
+{% block title %}
+    Профиль
+{% endblock %}
+
+{% block content %}
+    <section class="container account__control-wrapper">
+        <div class="user__portfolio">
+            {% if user.profile.image %}
+                <img src="{{ user.profile.image.url }}" alt="User image">
+            {% else %}
+                <img src="{% static 'images/default_user_img.png' %}" alt="Default user image">
+            {% endif %}
+            <div class="user__portfolio-details">
+                <span>Имя пользователя</span>
+                <h1>{{ user.username|truncatechars:20 }}</h1>
+                <span>Email</span>
+                <h2>{{ user.email|truncatechars:20 }}</h2>
+            </div>
+            <img class="user__portfolio-icons" src="{% static 'images/003-spotlight.png' %}" alt="spotlight icon">
+        </div>
+        <div class="user__buttons">
+            <a href="{% url 'profiles:profile_update' user.id %}">Редактировать профиль</a>
+            <a href="{% url 'accounts:password_change' %}">Сменить пароль</a>
+        </div>
+    </section>
+{% endblock %}
+

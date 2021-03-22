@@ -1,0 +1,10 @@
+{% extends 'movieblog/base_account.html' %}
+
+{% block title %}
+    Logout
+{% endblock %}
+
+{% block content %}
+    <h1>Logged out!</h1>
+    <p>Click <a href="{% url 'login' %}">here</a> to login again.</p>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'movieblog/base_account.html' %}
+{% load static %}
+
+{% block title %}
+    Редактирование профиля
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'js/fileInput.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <section class="container edit__account-window">
+        <form action="" class="register__window-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="toggle__mode">
+                <input type="checkbox" class="toggle-mode__checkbox" id="toggle-mode__checkbox">
+                <label class="toggle-mode__label" for="toggle-mode__checkbox">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="toggle-mode__ball"></span>
+                </label>
+            </div>
+            <h1>Редактирование пользователя</h1>
+            <div class="register__window-form-content">
+                <label for="{{ form.image.id_for_label }}">
+                    {% if user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" class="user__image" alt="User image">
+                    {% else %}
+                        <img src="{% static 'images/default_user_img.png' %}" class="user__image"
+                             alt="Default user image">
+                    {% endif %}
+                </label>
+                {{ form.image }}
+                {{ form.username }}
+                <div class="custom-form-group-checkbox">
+                    <label class="checkbox-label" for="{{ form.is_subscribed.id_for_label }}">Уведомлять о
+                        новостях:</label>
+                    {{ form.is_subscribed }}
+                </div>
+                <div class="edit__account-buttons">
+                    <button class="register__window-button" type="submit">Сохранить</button>
+                    <a href="{% url 'profiles:profile_details' user.id %}">Вернуться</a>
+                </div>
+            </div>
+            <img class="register__window-form-img movie-script" src="{% static 'images/044-script.png' %}"
+                 alt="chair icon">
+            <img class="register__window-form-img director-chair" src="{% static 'images/032-director-chair.png' %}"
+                 alt="chair icon">
+        </form>
+    </section>
+{% endblock %}

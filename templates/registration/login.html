@@ -1,0 +1,53 @@
+{% extends 'movieblog/base_account.html' %}
+{% load static %}
+
+{% block title %}
+    Вход
+{% endblock %}
+
+{% block content %}
+    <section class="container login__window">
+        <div class="login__window-wrapper">
+            <div class="toggle__mode">
+                <input type="checkbox" class="toggle-mode__checkbox" id="toggle-mode__checkbox">
+                <label class="toggle-mode__label" for="toggle-mode__checkbox">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="toggle-mode__ball"></span>
+                </label>
+            </div>
+
+            <a href="{% url 'home' %}" class="login__window-logo">
+                <img src="{% static 'images/movieblog.png' %}" alt="MovieBlog icon">
+                <span>MovieBlog</span>
+            </a>
+
+            <form action="{% url 'accounts:login' %}" class="login__window-form" method="post">
+                {% csrf_token %}
+                <h1>Вход</h1>
+                <div class="login__window-form-content">
+                    {% if form.errors %}
+                        <ul class="error-list">
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <div class="need-to-register">
+                        <span>У вас еще нет аккаунта?</span>
+                        <a href="{% url 'accounts:register' %}">Создать аккаунт</a>
+                    </div>
+                    <a href="{% url 'accounts:password_reset' %}" class="forgot__password-link">Забыли пароль?</a>
+                    {{ form.username }}
+                    {{ form.password }}
+                    <div class="login__window-input-checkbox">
+                    </div>
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <button class="login__window-button" type="submit">Войти</button>
+                </div>
+                <img class="login__window-form-img actor" src="{% static 'images/039-actor.png' %}" alt="actor icon">
+                <img class="login__window-form-img cinema" src="{% static 'images/045-cinema.png' %}" alt="actor cinema">
+            </form>
+        </div>
+    </section>
+{% endblock %}

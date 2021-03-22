@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block styles %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    {% endblock %}
+        <link rel="short icon" type="image/png" href="{% static 'images/movieblog.png' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/darkmode.js' %}"></script>
+    <script>
+        document.addEventListener("click", x => 0)
+    </script>
+
+    {% block extra_scripts %}
+    {% endblock %}
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+{% block navbar %}
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+</body>
+</html>
