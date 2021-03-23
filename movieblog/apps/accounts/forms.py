@@ -68,7 +68,7 @@ class RegisterForm(forms.ModelForm):
         confirm_password = self.data.get('confirm_password')
 
         if confirm_password != password:
-            raise ValueError('Пароли не совпадают')
+            raise ValidationError('Пароли не совпадают')
         else:
             return password
 

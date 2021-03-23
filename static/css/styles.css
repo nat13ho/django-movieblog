@@ -688,6 +688,9 @@ input[type="password"] {
 
 
 .post__comments-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 200ms ease;
     width: 1vw;
     height: 1vw;
