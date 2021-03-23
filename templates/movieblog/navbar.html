@@ -74,7 +74,7 @@
                 <button type="submit" class="navbar__button logout">Выйти</button>
             </form>
         {% else %}
-            <a href="{% url 'accounts:register' %}" class="navbar__button register">Зарегистрироваться</a>
+            <a href="{% url 'accounts:register' %}?next={{ request.path }}" class="navbar__button register">Зарегистрироваться</a>
             <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="navbar__button login">Войти</a>
         {% endif %}
     </div>
