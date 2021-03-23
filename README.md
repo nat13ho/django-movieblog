@@ -2,8 +2,8 @@
 
 ## Setup
 
-First of all clone the repository:
-```git
+First clone the repository:
+```sh
 $ git clone https://github.com/nat13ho/django-movieblog.git
 $ cd django-movieblog
 ```
@@ -25,11 +25,11 @@ Once pip has finished downloading the dependencies:
 (env)$ python manage.py runserver
 ```
 
-And navigate to `http://127.0.0.1:8000/`
+Then navigate to `http://127.0.0.1:8000/`
 
 Create superuser:
 ```sh
 (env)$ python manage.py createsuperuser
 ```
 
-To use email notifications set EMAIL_HOST_USER and EMAIL_HOST_PASSWORD in settings.py.
+To use email notifications set `EMAIL_HOST_USER` and `EMAIL_HOST_PASSWORD` in settings.py.
