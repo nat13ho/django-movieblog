@@ -154,6 +154,10 @@ DEFAULT_FROM_EMAIL = os.environ.get('EMAIL')
 
 SITE_ID = 1
 
+# Absoluteri configuration
+
+ABSOLUTEURI_PROTOCOL = 'https'
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
