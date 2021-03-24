@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.generic import DetailView, ListView
 
-from movieblog.apps.posts.models import Category, Post
+from movieblog.apps.posts.models import Post
 from .forms import ProfileForm
 
 
@@ -17,7 +17,6 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.order_by()
         return context
 
     def get(self, request, *args, **kwargs):
@@ -40,7 +39,6 @@ class FavouritePostListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.order_by()
         return context
 
 

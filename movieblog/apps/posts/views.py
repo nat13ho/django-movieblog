@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
 
-from .models import Post, Category, Comment
+from .models import Post, Comment
 from .forms import CommentForm
 
 
@@ -20,7 +20,6 @@ class HomeView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
-        context['categories'] = Category.objects.order_by()
         return context
 
 
@@ -71,7 +70,6 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
-        context['categories'] = Category.objects.order_by()
         context['comment_form'] = CommentForm()
         return context
 
