@@ -1,15 +1,19 @@
-{% extends 'movieblog/base_home.html' %}
+{% extends 'base_posts.html' %}
 {% load static %}
 
 {% block title %}
-    Новости
+    Главная страница
 {% endblock %}
 
-{% block content %}
-    {% include 'movieblog/posts/filtering.html' %}
+{% block banner %}
+    {% include 'posts/_filtering.html' %}
+    <section class="container banner">
+    </section>
+{% endblock banner %}
 
-    <section class="container news">
-        {% if posts %}
+{% block content %}
+    {% if posts %}
+        <section class="container news">
             <div class="news__wrapper">
                 {% for post in posts %}
                     <div class="news__item">
@@ -56,37 +60,9 @@
                     </div>
                 {% endfor %}
             </div>
-
-            {% if is_paginated %}
-                <div class="post__pagination-container">
-                    <ul class="post__pagination">
-                        {% if page_obj.has_previous %}
-                            <li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
-                        {% else %}
-                            <li><span class="disabled">Назад</span></li>
-                        {% endif %}
-                        {% for page_number in paginator.page_range %}
-                            {% if page_number == page_obj.number %}
-                                <li class="page active"><a href="?page={{ page_number }}">{{ page_number }}</a></li>
-                            {% elif page_number > page_obj.number|add:'-4' and page_number < page_obj.number|add:'4' %}
-                                <li class="page"><a href="?page={{ page_number }}">{{ page_number }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if page_obj.has_next %}
-                            <li><a href="?page={{ page_obj.next_page_number }}">Вперёд</a></li>
-                        {% else %}
-                            <li><span class="disabled">Вперёд</span></li>
-                        {% endif %}
-                    </ul>
-                </div>
+            {% if posts|length_is:6 %}
+                <a href="{% url 'posts:post_list' %}" class="news__all">Показать все новости</a>
             {% endif %}
-
-        {% else %}
-            <div class="news__not-found">
-                <img src="{% static 'images/036-film-reel.png' %}" alt="frame icon">
-                <h1>Ничего не найдено</h1>
-            </div>
-        {% endif %}
-    </section>
-
+        </section>
+    {% endif %}
 {% endblock content %}

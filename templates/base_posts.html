@@ -1,4 +1,4 @@
-{% extends 'movieblog/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block extra_scripts %}
@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block navbar %}
-    {% include 'movieblog/navbar.html' with categories=categories %}
+    {% include '_navbar.html' with categories=categories %}
 {% endblock %}
 
 {% block footer %}

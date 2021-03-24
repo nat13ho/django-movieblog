@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_scripts %}
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+
+{% block navbar %}
+    {% include '_navbar.html' with categories=categories %}
+{% endblock %}
+
+{% block sidebar %}
+    <aside class="account__menu">
+        <img class="account__menu-icons" src="{% static 'images/045-cinema.png' %}" alt="cinema icon">
+        <h4>MovieBlog: Личный кабинет</h4>
+        <hr>
+        <div class="account__menu-links">
+            <a href="{% url 'profiles:profile_details' user.id %}" class="profile">Мой профиль</a>
+            <a href="{% url 'profiles:bookmarks' %}" class="favorites">Избранные новости</a>
+        </div>
+    </aside>
+{% endblock %}

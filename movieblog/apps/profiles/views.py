@@ -13,7 +13,7 @@ from .forms import ProfileForm
 class ProfileView(LoginRequiredMixin, DetailView):
     model = User
     context_object_name = 'user'
-    template_name = 'movieblog/profiles/profile_details.html'
+    template_name = 'profiles/profile_details.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,7 +31,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 class FavouritePostListView(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = 'posts'
-    template_name = 'movieblog/profiles/profile_post_list.html'
+    template_name = 'profiles/profile_post_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -85,13 +85,13 @@ def update_profile(request, pk):
                 user.save()
                 return redirect(reverse('profiles:profile_details', kwargs={'pk': user.pk}))
             else:
-                return render(request, 'movieblog/profiles/profile_update.html', {'form': form})
+                return render(request, 'profiles/profile_update.html', {'form': form})
         else:
             form = ProfileForm(initial={
                 'username': user.username,
                 'image': user.profile.image,
                 'is_subscribed': user.profile.is_subscribed}
             )
-            return render(request, 'movieblog/profiles/profile_update.html', {'form': form})
+            return render(request, 'profiles/profile_update.html', {'form': form})
     else:
         return HttpResponseForbidden()

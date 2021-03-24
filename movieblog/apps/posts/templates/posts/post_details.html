@@ -1,4 +1,4 @@
-{% extends 'movieblog/base_home.html' %}
+{% extends 'base_posts.html' %}
 {% load humanize %}
 {% load static %}
 
@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block navbar %}
-    {% include 'movieblog/navbar.html' with categories=categories %}
+    {% include '_navbar.html' with categories=categories %}
 {% endblock navbar %}
 
 {% block content %}

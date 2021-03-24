@@ -12,7 +12,7 @@ from .forms import CommentForm
 class HomeView(ListView):
     model = Post
     context_object_name = 'posts'
-    template_name = 'movieblog/posts/index.html'
+    template_name = 'posts/index.html'
 
     def get_queryset(self):
         posts = Post.objects.all()[:6]
@@ -26,7 +26,7 @@ class HomeView(ListView):
 
 class PostListView(HomeView):
     paginate_by = 12
-    template_name = 'movieblog/posts/post_list.html'
+    template_name = 'posts/post_list.html'
     ordering = '-pub_date'
 
     def get_queryset(self):
@@ -67,7 +67,7 @@ class PostListView(HomeView):
 class PostDetailView(DetailView):
     model = Post
     context_object_name = 'post'
-    template_name = 'movieblog/posts/post_details.html'
+    template_name = 'posts/post_details.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
