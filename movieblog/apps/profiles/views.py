@@ -21,10 +21,9 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         user_id = self.kwargs.get('pk')
-        if self.request.user.id == user_id:
-            return super().get(request, *args, **kwargs)
-        else:
+        if self.request.user.id != user_id:
             return HttpResponseForbidden()
+        return super().get(request, *args, **kwargs)
 
 
 class FavouritePostListView(LoginRequiredMixin, ListView):
@@ -34,7 +33,9 @@ class FavouritePostListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user
-        posts = user.profile.posts.all()
+        posts = Post.objects.filter(
+            profile__user_id=user.id
+        ).select_related('category')
         return posts
 
     def get_context_data(self, **kwargs):
@@ -52,7 +53,7 @@ def add_to_bookmarks(request, post_id):
         user.save()
         return redirect(next_url)
     else:
-        return redirect(reverse('home'))
+        return redirect('home')
 
 
 @login_required
@@ -65,7 +66,7 @@ def remove_from_bookmarks(request, post_id):
         user.save()
         return redirect(next_url)
     else:
-        return redirect(reverse('home'))
+        return redirect('home')
 
 
 @login_required

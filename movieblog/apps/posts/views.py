@@ -15,7 +15,7 @@ class HomeView(ListView):
     template_name = 'posts/index.html'
 
     def get_queryset(self):
-        posts = Post.objects.all()[:6]
+        posts = Post.objects.select_related('category')[:6]
         return posts
 
     def get_context_data(self, *args, **kwargs):
@@ -38,18 +38,24 @@ class PostListView(HomeView):
         sort_order = order_by_date or order_by_title or default_sort
 
         if category:
-            posts = Post.objects.filter(category_id=int(category)).order_by(sort_order)
+            posts = Post.objects.filter(
+                category_id=int(category)
+            ).select_related('category').order_by(sort_order)
         elif search_string:
             posts = Post.objects.filter(
                 Q(title__icontains=search_string) | Q(content__icontains=search_string)
-            ).order_by(sort_order)
+            ).select_related('category').order_by(sort_order)
         elif order_by_popularity:
             if order_by_popularity == 'asc':
-                posts = Post.objects.annotate(num_profile=Count('profile')).order_by('-num_profile')
+                posts = Post.objects.annotate(
+                    num_profile=Count('profile')
+                ).select_related('category').order_by('-num_profile')
             else:
-                posts = Post.objects.annotate(num_profile=Count('profile')).order_by('num_profile')
+                posts = Post.objects.annotate(
+                    num_profile=Count('profile')
+                ).select_related('category').order_by('num_profile')
         else:
-            posts = Post.objects.order_by(sort_order)
+            posts = Post.objects.select_related('category').order_by(sort_order)
         return posts
 
     def get_context_data(self, *args, **kwargs):
