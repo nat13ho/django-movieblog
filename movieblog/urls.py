@@ -3,14 +3,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from movieblog.apps.posts.views import HomeView
+from posts.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
-    path('posts/', include('movieblog.apps.posts.urls')),
-    path('profiles/', include('movieblog.apps.profiles.urls')),
-    path('accounts/', include('movieblog.apps.accounts.urls')),
+    path('posts/', include('posts.urls')),
+    path('profiles/', include('profiles.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 if settings.DEBUG:
